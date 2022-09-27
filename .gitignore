@@ -1,3 +1,6 @@
+RT_reporter.bat
+work.xlsx
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
