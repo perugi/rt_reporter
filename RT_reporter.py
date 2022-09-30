@@ -87,6 +87,7 @@ for sheetname in wb.sheetnames[1:-1]:
         rt_link = sheet_data.cell(row=row, column=RT_LINK_COLUMN).value
 
         if (t_for_rt := t_spent-t_input) > 0:
+            print(f'Inputting time for {task}')
             if rt_link:
                 try:
                     mo = rt_link_regex.search(str(rt_link))
@@ -113,11 +114,11 @@ for sheetname in wb.sheetnames[1:-1]:
                 try:
                     if mo[1] == 'c':
                         print(f"Updating RT#{rt_number} with {t_for_rt} minutes.")
-                        # if mo[2]:
-                        #     rt.reply(rt_number, mo[2], t_for_rt)
-                        # else:
-                        #     rt.reply(rt_number, 't', t_for_rt)
-                        # sheet.cell(row=row, column=T_INPUT_COLUMN).value = t_for_rt + t_input
+                        if mo[2]:
+                            rt.reply(rt_number, mo[2], t_for_rt)
+                        else:
+                            rt.reply(rt_number, 't', t_for_rt)
+                        sheet.cell(row=row, column=T_INPUT_COLUMN).value = t_for_rt + t_input
                 except TypeError:    
                     None
 
